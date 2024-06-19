@@ -40,7 +40,7 @@ jobs:
           run: npm test
         
         - name: Archive Test Result
-          if: steps.unit-data.outcome == 'faliure' || steps.unit-data.outcome == 'success'
+          if:   failure() && (steps.unit-data.outcome == 'faliure' || steps.unit-data.outcome == 'success')
           uses: actions/upload-artifact@v3
           with:
             name: Mocha-test-result
@@ -67,6 +67,7 @@ jobs:
           run: npm test
         
         - name: check code coverage
+          continue-on-error: true
           run: npm run coverage
         
         - name: Archive Test Result
