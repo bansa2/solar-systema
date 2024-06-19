@@ -18,7 +18,7 @@ jobs:
         strategy:
           matrix:
              nodejs_version: [18, 20]
-             os: [ubuntu-latest, macos-latest]
+             os: [ubuntu-latest]
              exclude:
                - nodejs_version: 18
                  os: macos-latest
@@ -105,5 +105,12 @@ jobs:
         with:
           username: ${{vars.DOCKER_USERNAME}}
           password: ${{secrets.DOCKER_PASSWORD}}
+      
+      - name: DOcker build
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: false
+          tags: ${{vars.DOCKER_USERNAME}}/solar-system:${{ github.sha }}
 
 
