@@ -34,6 +34,12 @@ jobs:
     
         - name: Install Dependencies
           run: npm install
+
+        - name: cache npm dependencies
+          uses: actions/cache@v3
+          with:
+            path: node_modules
+            key: ${{runner.os}}-node-modules-${{ hashFiles('package-lock.json') }}
     
         - name: Unit Testing
           id: unit-data
@@ -58,6 +64,12 @@ jobs:
           uses: actions/setup-node@v3
           with:
             node-version: 18
+        
+        - name: cache npm dependencies
+          uses: actions/cache@v3
+          with:
+            path: node_modules
+            key: ${{runner.os}}-node-modules-${{ hashFiles('package-lock.json') }}    
     
         - name: Install Dependencies
           run: npm install
