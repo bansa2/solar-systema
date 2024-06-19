@@ -94,6 +94,7 @@ jobs:
 
     docker:
       name: conterization
+      needs: [unit-testing, code-coverage]
       runs-on: ubuntu-latest
       steps:
       - name: checkout
