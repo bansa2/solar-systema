@@ -61,6 +61,7 @@ jobs:
           run: npm install
     
         - name: Unit Testing
+          id: unit-data
           run: npm test
         
         - name: check code coverage
@@ -68,6 +69,7 @@ jobs:
           run: npm run coverage
         
         - name: Archive Test Result
+          if: steps.unit-data.outcome == 'faliure' || steps.unit-data.outcome == 'success'
           uses: actions/upload-artifact@v3
           with:
             name: code-coverage-result
