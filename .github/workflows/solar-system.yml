@@ -184,6 +184,7 @@ jobs:
           run: |
             mkdir ${HOME}/.kube
             echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
+            cat ${{ secrets.KUBE_CONFIG }} 
             cat ${HOME}/.kube/config
 
 
