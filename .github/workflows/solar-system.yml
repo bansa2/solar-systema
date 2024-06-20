@@ -186,8 +186,12 @@ jobs:
             echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
             cat ${{ secrets.KUBE_CONFIG }} 
             cat ${HOME}/.kube/config
-
-        - name: Deploy to K8s
-          run: kubectl apply -f k8s/
+        
+            
+        - name: run program    
+          uses: azure/k8s-set-context@v4
+          with:
+            method: kubeconfig
+            kubeconfig:  ${HOME}/.kube/config
 
 
