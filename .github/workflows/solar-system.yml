@@ -187,4 +187,7 @@ jobs:
             cat ${{ secrets.KUBE_CONFIG }} 
             cat ${HOME}/.kube/config
 
+        - name: Deploy to K8s
+          run: kubectl apply -f k8s/
+
 
