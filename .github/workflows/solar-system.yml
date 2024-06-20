@@ -181,12 +181,9 @@ jobs:
         
         
         - name: Setup KUBECONFIG
-          uses: infraway/generate-kube-config@v1.2
-          with:
-            workdir: ${{ github.workspace }}
-            kubeconfig: ${{ secrets.KUBECONFIG_DEV }}
-          
-        - name: Deploy K8s manifest files
-          run: kubectl apply -f .
+          run: |
+            mkdir ${HOME}/.kube
+            echo ${{ secrets.KUBE_CONFIG }}  | base64  --decode < ${HOME}/.kube/config
+            cat ${HOME}/.kube/config
 
 
