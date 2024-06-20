@@ -181,12 +181,10 @@ jobs:
         
         
         - name: Setup KUBECONFIG
-          uses: vbem/kubeconfig4sa@v1
+          uses: infraway/generate-kube-config@v1.2
           with:
-            server:     https://your-kubeapi-server:6443
-            ca-base64:  ${{ secrets.K8S_CA_BASE64 }}
-            token:      ${{ secrets.K8S_SA_TOKEN }}
-            namespace:  MYNS
+            workdir: ${{ github.workspace }}
+            kubeconfig: ${{ secrets.KUBECONFIG_DEV }}
           
         - name: Deploy K8s manifest files
           run: kubectl apply -f .
