@@ -169,7 +169,7 @@ jobs:
 
     dev-deploy:
       needs: docker
-      runs-on: ubuntu-latets
+      runs-on: ubuntu-latest
       steps:
         - name: checkout repo
           uses: actions/checkout@v4
