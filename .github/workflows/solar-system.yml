@@ -194,4 +194,10 @@ jobs:
             method: kubeconfig
             kubeconfig:  ${HOME}/.kube/config
 
+        - name: Fetch Kubernetes cluster details
+          run: |
+            kubectl version --short
+            echo ------------------------
+            kubectl get nodes
+
 
